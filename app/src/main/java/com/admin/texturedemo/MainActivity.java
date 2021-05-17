@@ -91,6 +91,14 @@ public class MainActivity extends AppCompatActivity implements TextureView.Surfa
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        releaseCameraDevice(cameraDevice);
+        releaseCameraSession(mCameraCaptureSession);
+        releaseImageReader(mReader);
+    }
+
     private void showFloatView() {
         if (null == windowManager) {
             windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
@@ -345,4 +353,5 @@ public class MainActivity extends AppCompatActivity implements TextureView.Surfa
             reader = null;
         }
     }
+
 }
